@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body> 
+    <div class="header" id="h1">
+        <h1>WELCOME TO PET REORGANIZER</h1>
+        <p>KINDLY ENTER YOUR PET'S IMAGE BELOW</p>  
+    </div>
+
+    <div id="form" class="header"> 
+        <form action="/" method="POST" enctype="multipart/form-data">
+            
+            <div class="form-group"> 
+                <label for="camera" class="custom-file-upload">📸 Open Camera</label>
+                <input type="file" accept="image/*" capture="environment" name="camera_img" id="camera" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label for="file" class="custom-file-upload">Choose Image</label>
+                <input type="file" name="file_img" id="file" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="custom-file-upload upload-button">Upload</button>
+            </div>
+
+            <img id="imgPreview" src="#" alt="Image Preview">
+        </form>
+    </div>
+
+    <script>
+        const preview = document.getElementById('imgPreview');
+        
+        function handlePreview(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        document.getElementById('file').addEventListener('change', handlePreview);
+        document.getElementById('camera').addEventListener('change', handlePreview);
+    </script>
+</body>
+</html>

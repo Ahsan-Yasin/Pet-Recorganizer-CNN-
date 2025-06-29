@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body> 
+    <div class="header" id="h1">
+        {% if prediction %}  
+        {% if info %}
+        <h1> PET  :  {{ prediction }} </h1>
+        <h1> LIFE SPAM : {{ info[1] }} </h1>
+        <h1> FOOD  : {{ info[2] }} </h1>
+        <h1>  HABITAT : {{ info[3] }}   </h1>
+
+        <div class="header" id="back_btn"> 
+            <form action="/" method="GET">
+                    <button type="submit">TRY AGAIN !</button>
+            </form>
+        </div>   
+        {% endif%} 
+        {% endif %}
+    </div>
+
+  
+ 
+</body>
+</html>
